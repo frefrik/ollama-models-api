@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "ollama-models-api"
+version = "0.1.0"
+description = "🦙 API to explore the complete collection of Ollama models."
+authors = ["Fredrik Haarstad <codemonkey@zomg.no>"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["standard"], version = "^0.115.0"}
+sqlmodel = "^0.0.22"
+pydantic-settings = "^2.5.2"
+psycopg = {extras = ["binary"], version = "^3.2.2"}
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
+isort = "^5.13.2"
+pytest = "^8.3.3"
+httpx = "^0.27.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
