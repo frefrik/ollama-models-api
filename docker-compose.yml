@@ -1,0 +1,19 @@
+services:
+  ollamadb:
+    build: .
+    container_name: ollama-models-api
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - cloudflared
+    env_file:
+      - .env
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared-ollamadb
+    restart: always
+    command: tunnel --no-autoupdate run
+    env_file:
+      - cloudflared.env
