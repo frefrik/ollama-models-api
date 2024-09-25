@@ -32,7 +32,7 @@ Retrieve a list of all available Ollama models.
 Example request:
 
 ```bash
-curl https://ollamadb.dev/api/models?limit=3
+curl https://ollamadb.dev/api/v1/models?limit=3
 ```
 
 Example response:
