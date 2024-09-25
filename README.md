@@ -23,7 +23,7 @@ Retrieve a list of all available Ollama models.
 - `model_identifier`: (optional) Filter models by identifier.
 - `namespace`: (optional) Filter models by namespace.
 - `capability`: (optional) Filter models by capability.
-- `model_type`: (optional) Filter models by type.
+- `model_type`: (optional) Filter models by type. Valid values: `official`, `community`.
 - `sort_by`: (optional) Sort the results by a specific field. Valid fields: `pulls`, `last_updated`.
 - `order`: (optional) Sort order. Valid values: `asc`, `desc`.
 - `limit`: (optional) Number of results to return. Default is 20.
