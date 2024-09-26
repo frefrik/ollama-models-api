@@ -1,4 +1,7 @@
-# 🦙 Ollama Models API
+<p align="center" style="margin-bottom: 0;">
+  <img src="assets/banner.png" alt="Ollama Models API Banner">
+</p>
+<h1 align="center" style="margin-top: 0;">🦙 Ollama Models API</h1>
 
 This API provides a simple interface to explore the complete collection of [Ollama](https://ollama.com/) models.
 
