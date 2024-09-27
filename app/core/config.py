@@ -1,8 +1,7 @@
 from typing import Annotated, Any, List, Literal
 
 from dotenv import load_dotenv
-from pydantic import AnyUrl, BeforeValidator, PostgresDsn, computed_field
-from pydantic_core import MultiHostUrl
+from pydantic import AnyUrl, BeforeValidator, computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 load_dotenv()
@@ -38,23 +37,22 @@ class Settings(BaseSettings):
         ]
 
     PROJECT_NAME: str
-    POSTGRES_SERVER: str
-    POSTGRES_PORT: int = 5432
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str = ""
-    POSTGRES_DB: str = ""
+    SQLITE_DATABASE_PATH: str = "./ollama_models.db"
 
     @computed_field
     @property
-    def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
-        return MultiHostUrl.build(
-            scheme="postgresql+psycopg",
-            username=self.POSTGRES_USER,
-            password=self.POSTGRES_PASSWORD,
-            host=self.POSTGRES_SERVER,
-            port=self.POSTGRES_PORT,
-            path=self.POSTGRES_DB,
-        )
+    def SQLITE_DATABASE_URI(self) -> str:
+        if self.ENVIRONMENT == "local":
+            return self.SQLITE_DATABASE_PATH
+        elif self.ENVIRONMENT == "production":
+            return "./ollama_models.db"
+        else:
+            raise ValueError(f"Unknown ENVIRONMENT: {self.ENVIRONMENT}")
+
+    @computed_field
+    @property
+    def SQLALCHEMY_DATABASE_URI(self) -> str:
+        return f"sqlite:///{self.SQLITE_DATABASE_URI}"
 
 
 settings = Settings()

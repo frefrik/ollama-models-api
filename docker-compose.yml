@@ -9,6 +9,10 @@ services:
       - cloudflared
     env_file:
       - .env
+    volumes:
+      - ${SQLITE_DATABASE_PATH:-./ollama_models.db}:/code/ollama_models.db
+    environment:
+      - ENVIRONMENT=production
 
   cloudflared:
     image: cloudflare/cloudflared:latest
