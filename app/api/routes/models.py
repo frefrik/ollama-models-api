@@ -1,7 +1,7 @@
 from typing import Any
 
 from fastapi import APIRouter
-from sqlmodel import func, select
+from sqlmodel import func, or_, select
 
 from app.api.deps import SessionDep
 from app.models import Model, ModelsPublic
@@ -50,7 +50,12 @@ def read_models(
 
     if search:
         search_term = f"%{search}%"
-        query = query.where(Model.model_identifier.ilike(search_term))
+        query = query.where(
+            or_(
+                Model.model_identifier.contains(search_term),
+                Model.description.contains(search_term),
+            )
+        )
 
     # Get total count before pagination
     count_subquery = query.subquery()
