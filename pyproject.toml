@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ollama-models-api"
-version = "0.1.0"
+version = "0.2.0"
 description = "🦙 API to explore the complete collection of Ollama models."
 authors = ["Fredrik Haarstad <codemonkey@zomg.no>"]
 license = "MIT"
@@ -12,7 +12,6 @@ python = "^3.11"
 fastapi = {extras = ["standard"], version = "^0.115.0"}
 sqlmodel = "^0.0.22"
 pydantic-settings = "^2.5.2"
-psycopg = {extras = ["binary"], version = "^3.2.2"}
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.8.0"

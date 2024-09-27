@@ -1,7 +1,7 @@
 import uuid
 from datetime import date, datetime
 
-from sqlmodel import ARRAY, BigInteger, Column, DateTime, Field, SQLModel, String, func
+from sqlmodel import JSON, Column, DateTime, Field, SQLModel, func
 
 
 class ModelBase(SQLModel):
@@ -11,8 +11,8 @@ class ModelBase(SQLModel):
     model_type: str
     description: str | None = None
     capability: str | None = None
-    labels: list[str] = Field(sa_column=Column(ARRAY(String), nullable=False))
-    pulls: int = Field(sa_column=Column(BigInteger, nullable=False))
+    labels: list[str] = Field(sa_column=Column(JSON, nullable=False))
+    pulls: int
     tags: int
     last_updated: date
     last_updated_str: str
