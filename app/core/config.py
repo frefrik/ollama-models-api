@@ -1,4 +1,5 @@
 from typing import Annotated, Any, List, Literal
+from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 from pydantic import AnyUrl, BeforeValidator, computed_field
@@ -35,6 +36,16 @@ class Settings(BaseSettings):
         return [str(origin).rstrip("/") for origin in self.BACKEND_CORS_ORIGINS] + [
             self.FRONTEND_HOST
         ]
+
+    @computed_field
+    @property
+    def allowed_hosts(self) -> list[str]:
+        hosts = set()
+        for origin in self.all_cors_origins:
+            parsed_url = urlparse(origin)
+            if parsed_url.hostname:
+                hosts.add(parsed_url.hostname)
+        return list(hosts)
 
     PROJECT_NAME: str
     SQLITE_DATABASE_PATH: str = "./ollama_models.db"
