@@ -1,7 +1,12 @@
-<p align="center" style="margin-bottom: 0;">
+<p align="center">
   <img src="assets/banner.png" alt="Ollama Models API Banner">
 </p>
-<h1 align="center" style="margin-top: 0;">🦙 Ollama Models API</h1>
+<p align="center">
+  <img src="https://badgen.net/uptime-robot/status/m797761174-e2f166400c34844acf2b729d" alt="Status">
+  <img src="https://badgen.net/uptime-robot/week/m797761174-e2f166400c34844acf2b729d" alt="Uptime week">
+  <img src="https://badgen.net/uptime-robot/month/m797761174-e2f166400c34844acf2b729d" alt="Uptime month">
+</p>
+<h1 align="center">🦙 Ollama Models API</h1>
 
 This API provides a simple interface to explore the complete collection of [Ollama](https://ollama.com/) models.
 
