@@ -4,6 +4,8 @@ import time
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 
 from app.api.main import api_router
@@ -65,4 +67,13 @@ if settings.all_cors_origins:
     )
 
 
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
+async def read_items():
+    with open("app/static/index.html") as f:
+        html_content = f.read()
+
+    return HTMLResponse(content=html_content, status_code=200)
+
+
+app.mount("/static", StaticFiles(directory="app/static", html=True), name="static")
 app.include_router(api_router, prefix=settings.API_V1_STR)
