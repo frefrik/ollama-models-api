@@ -1,6 +1,6 @@
 services:
   ollamadb:
-    build: .
+    image: ghcr.io/frefrik/ollama-models-api:latest
     container_name: ollama-models-api
     restart: always
     ports:
