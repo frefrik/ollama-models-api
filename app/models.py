@@ -1,6 +1,8 @@
+import json
 import uuid
 from datetime import date, datetime
 
+from pydantic import field_validator
 from sqlmodel import JSON, Column, DateTime, Field, SQLModel, func
 
 
@@ -17,6 +19,12 @@ class ModelBase(SQLModel):
     last_updated: date
     last_updated_str: str
     url: str
+
+    @field_validator("labels", mode="before")
+    def parse_labels(cls, v):
+        if isinstance(v, str):
+            return json.loads(v)
+        return v
 
     class Config:
         protected_namespaces = ()
